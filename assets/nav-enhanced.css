@@ -1,0 +1,124 @@
+/* Enhanced Navigation Styling */
+
+.navbar {
+    margin: 2em 0;
+    padding: 2em 0;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.nav-buttons {
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight: bold;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    color: #001a2e;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 140px;
+    height: 50px;
+}
+
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, #00e6ff 0%, #00b3e6 100%);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 212, 255, 0.6);
+    border-color: #ffffff;
+}
+
+.nav-btn:hover::before {
+    left: 100%;
+}
+
+.nav-btn:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
+}
+
+/* Alternative modern pill style */
+.nav-btn-pill {
+    border-radius: 50px;
+    padding: 10px 20px;
+}
+
+/* Card-like style for week navigation */
+.nav-btn-card {
+    border-radius: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 0.9em;
+}
+
+.nav-btn-card::after {
+    content: attr(data-week);
+    font-size: 0.7em;
+    opacity: 0.8;
+    display: block;
+}
+
+.nav-btn-card:hover {
+    background: linear-gradient(135deg, #7b5fb5 0%, #8a5bb8 100%);
+    transform: translateY(-6px) rotate(1deg);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}

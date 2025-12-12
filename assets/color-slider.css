@@ -1,0 +1,268 @@
+/* ====================================
+   COLOR SLIDER CONTROL
+   ==================================== */
+
+.color-slider-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(20px);
+    z-index: 10000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.color-slider-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.slider-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.slider-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Range Slider Styling */
+input[type="range"] {
+    width: 180px;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #667eea);
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #667eea);
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+}
+
+/* Value Display */
+.slider-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #00d4ff;
+    font-weight: 700;
+    min-width: 35px;
+    text-align: right;
+}
+
+/* Preset Buttons */
+.preset-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.preset-btn {
+    padding: 8px 12px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    color: #00d4ff;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.5px;
+}
+
+.preset-btn:hover {
+    background: rgba(0, 212, 255, 0.25);
+    border-color: #00d4ff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+.preset-btn:active {
+    transform: translateY(0);
+}
+
+/* Reset Button */
+.reset-btn {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    color: #ffffff;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 1px;
+}
+
+.reset-btn:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.5) 100%);
+    border-color: #00ffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}
+
+/* Toggle Button */
+.toggle-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+    background: rgba(0, 212, 255, 0.2);
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    border-radius: 50%;
+    color: #00d4ff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.toggle-btn:hover {
+    background: rgba(0, 212, 255, 0.4);
+    border-color: #00d4ff;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Collapsed State */
+.color-slider-container.collapsed {
+    max-width: 50px;
+    padding: 10px;
+    gap: 0;
+}
+
+.color-slider-container.collapsed .color-slider-title,
+.color-slider-container.collapsed .slider-group,
+.color-slider-container.collapsed .preset-buttons,
+.color-slider-container.collapsed .reset-btn {
+    display: none;
+}
+
+.color-slider-container.collapsed .toggle-btn {
+    position: static;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .color-slider-container {
+        max-width: 250px;
+        padding: 16px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    input[type="range"] {
+        width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .color-slider-container {
+        max-width: 220px;
+        padding: 14px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    input[type="range"] {
+        width: 130px;
+    }
+    
+    .preset-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .color-slider-container {
+        max-width: 50px;
+        padding: 10px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    .color-slider-container.collapsed {
+        max-width: 50px;
+    }
+    
+    .color-slider-title,
+    .slider-group,
+    .preset-buttons,
+    .reset-btn {
+        display: none;
+    }
+    
+    .toggle-btn {
+        position: static;
+    }
+}

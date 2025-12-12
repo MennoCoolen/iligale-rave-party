@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind Fonts Overview</title>
+  <link href="./dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/unified-design.css?v=1765466747">
+  <link rel="stylesheet" href="assets/footer.css?v=1765466747">
+  <link rel="stylesheet" href="assets/typography-modern.css?v=1765466747">
+  <link rel="stylesheet" href="assets/color-slider.css?v=1765466747">
+  <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            transition: background 0.1s ease-out;
+        }
+
+        /* Simple two-column layout and responsive image styling */
+        .two-columns {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .two-columns .column {
+            flex: 1 1 300px;
+        }
+        .responsive-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 0.75rem;
+        }
+        /* Footer photo styles */
+        .footer-photo {
+            width: 120px;
+            height: auto;
+            border-radius: 6px;
+            object-fit: cover;
+            margin-right: 1rem;
+            vertical-align: middle;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            display: block;
+        }
+        .footer-photo:hover{ transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.22); }
+
+        /* Wrapper and play button (styled to match site glassmorphism) */
+        .footer-photo-wrapper{ position: relative; display: inline-block; margin-right: 1rem; }
+        .footer-play-btn{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.10);
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+            transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+            color: white;
+        }
+        .footer-play-btn:active{ transform: scale(0.98); }
+        .footer-play-btn .icon-pause{ display: none; }
+        .footer-photo-wrapper.playing .footer-play-btn{ background: rgba(102,126,234,0.95); border-color: rgba(102,126,234,0.95); }
+        .footer-photo-wrapper.playing .footer-play-btn .icon-play{ display: none; }
+        .footer-photo-wrapper.playing .footer-play-btn .icon-pause{ display: block; }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            Lost in Tra(i)nslation
+            <p class="author">Menno Coolen</p>
+        </div>
+        <nav class="navbar style-glassmorphism">
+            <ul class="nav-buttons">
+                <li><a href="index.html" class="nav-btn">Startpagina</a></li>
+                <li><a href="week1.html" class="nav-btn">Week 1</a></li>
+                <li><a href="week2.html" class="nav-btn">Week 2</a></li>
+                <li><a href="week3.html" class="nav-btn">Week 3</a></li>
+                <li><a href="week4.html" class="nav-btn">Week 4</a></li>
+                <li><a href="week5.html" class="nav-btn">Week 5</a></li>
+                <li><a href="week6.html" class="nav-btn">Week 6</a></li>
+                <li><a href="week7.html" class="nav-btn">Week 7</a></li>
+                <li><a href="week8.html" class="nav-btn">Week 8</a></li>
+                <li><a href="week9.html" class="nav-btn">Week 9</a></li>
+                <li><a href="week10.html" class="nav-btn">Week 10</a></li>
+            </ul>
+        </nav>
+        <page>
+            <h1>My first page</h1>
+            <h2>Subtitle</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis pulvinar nisl, sed ultrices purus ornare et...
+            </p>
+            <!-- Flex container with 2 columns -->
+            <div class="two-columns">
+                <div class="column">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis pulvinar nisl, sed ultrices purus ornare et. Phasellus sit amet lacus urna.
+                    </p>
+                </div>
+                <div class="column">
+                    <p>
+                        Nullam iaculis tristique varius. Donec placerat blandit leo. Vestibulum a dolor sed ex ornare finibus. Suspendisse pretium molestie orci.
+                    </p>
+                </div>
+            </div>
+        </page>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Over Deze Site</h3>
+                <p>Een interactieve portfolio gemaakt voor het vak prototyping tools. Bevat wekelijkse leeromgevingen met moderne web design.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Week 1-5</h3>
+                <a href="week1.html">Week 1</a>
+                <a href="week2.html">Week 2</a>
+                <a href="week3.html">Week 3</a>
+                <a href="week4.html">Week 4</a>
+                <a href="week5.html">Week 5</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Week 6-10</h3>
+                <a href="week6.html">Week 6</a>
+                <a href="week7.html">Week 7</a>
+                <a href="week8.html">Week 8</a>
+                <a href="week9.html">Week 9</a>
+                <a href="week10.html">Week 10</a>
+            </div>
+            
+            <div class="footer-student">
+                <h3>Student Informatie</h3>
+                <div class="student-info">
+                    <span class="student-name">Menno Coolen</span>
+                    <span class="student-class">1GDM1</span>
+                    <span class="student-school">AP hogeschool</span>
+                    <span class="student-project">Prototyping Tools</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+                        <!-- Footer photo (hover to play music) -->
+                        <img src="assets/IMG_1743_2.jpg" alt="Footer foto" class="footer-photo" title="Hover om muziek te spelen (of klik op mobiel)">
+                        <div style="display:inline-block; vertical-align:middle;">
+                            <p>© <span class="year">2025</span> - Prototyping Tools Project - Lost in Tra(i)nslation</p>
+                            <p style="margin-top: 0.5rem;">Gemaakt door Menno Coolen</p>
+                        </div>
+        </div>
+    </footer>
+
+                <!-- Footer audio and interactive photo -->
+                <audio id="footer-audio" src="assets/We Love The Great Old.mp3" preload="none" loop></audio>
+
+                <script>
+                    (function(){
+                        // Create hover/click handlers once DOM is ready
+                        function initFooterAudio(){
+                            var audio = document.getElementById('footer-audio');
+                            var img = document.querySelector('.footer-photo');
+                            if(!audio || !img) return;
+
+                            // Try to play on hover; many browsers allow play on user interaction but may block autoplay.
+                            img.addEventListener('mouseenter', function(){
+                                var p = audio.play();
+                                if(p && p.catch){ p.catch(function(e){ console.log('Audio play prevented by browser:', e); }); }
+                            });
+
+                            img.addEventListener('mouseleave', function(){
+                                try{ audio.pause(); audio.currentTime = 0; }catch(e){/* ignore */}
+                            });
+
+                            // Touch / click fallback: toggle play/pause
+                            img.addEventListener('click', function(){
+                                if(audio.paused){ audio.play().catch(function(e){ console.log('Play prevented:', e); }); }
+                                else { audio.pause(); audio.currentTime = 0; }
+                            });
+
+                            // For mobile, also toggle on touchstart
+                            img.addEventListener('touchstart', function(e){
+                                e.preventDefault();
+                                if(audio.paused){ audio.play().catch(function(e){ console.log('Play prevented:', e); }); }
+                                else { audio.pause(); audio.currentTime = 0; }
+                            });
+                        }
+
+                        if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initFooterAudio);
+                        else initFooterAudio();
+                    })();
+                </script>
+
+                <script src="assets/interactive-bg.js?v=1765466747"></script>
+        <script>
+            (function(){
+                if(!document.querySelector('.color-slider-container')){
+                    var l = document.createElement('link');
+                    l.rel = 'stylesheet';
+                    l.href = 'assets/color-slider.css?v=1765466747';
+                    document.head.appendChild(l);
+
+                    var s = document.createElement('script');
+                    s.src = 'assets/color-slider.js?v=1765466747';
+                    document.body.appendChild(s);
+                }
+            })();
+        </script>
+</body>
+</html>

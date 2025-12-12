@@ -1,0 +1,675 @@
+/* ====================================
+   COMPLETE UNIFIED DESIGN SYSTEM
+   Modern, Cohesive, Professional
+   ==================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ====================================
+   COLOR PALETTE & VARIABLES
+   ==================================== */
+
+:root {
+    --primary: #667eea;
+    --primary-light: #7b5fb5;
+    --primary-dark: #5568d3;
+    --secondary: #764ba2;
+    --accent: #00d4ff;
+    --accent-light: #00ffff;
+    --accent-dark: #0099cc;
+    --bg-dark: #0a0e27;
+    --bg-darker: #05070f;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-tertiary: rgba(255, 255, 255, 0.6);
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-medium: rgba(0, 212, 255, 0.2);
+    --border-strong: rgba(0, 212, 255, 0.4);
+    --settings-gap: 7.5rem; /* distance from top for title to match slider spacing */
+}
+
+/* ====================================
+   BASE STYLES
+   ==================================== */
+
+body {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    min-height: 100vh;
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    line-height: 1.6;
+}
+
+/* ====================================
+   TWO-COLUMN IMAGE LAYOUT + LIGHTBOX
+   Ensures column 1 is text, column 2 holds images and provides a simple lightbox
+   ==================================== */
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.two-columns .column img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    cursor: zoom-in;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.two-columns .column img:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(4,6,20,0.85);
+    z-index: 20000;
+    transition: opacity 160ms ease;
+}
+.lightbox-overlay.open { display: flex; }
+
+.lightbox-content {
+    position: relative;
+    max-width: 92vw;
+    max-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.08);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+    .two-columns {
+        grid-template-columns: 1fr;
+    }
+    .lightbox-close { top: 6px; right: 8px; }
+}
+
+html, body {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* ====================================
+   CONTAINER LAYOUT
+   ==================================== */
+
+.container {
+    max-width: 85vw;
+    margin: 0 auto;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ====================================
+   TITLE/HEADER SECTION
+   ==================================== */
+
+.title {
+    text-align: center;
+    padding: 4rem 3rem;
+    margin-top: var(--settings-gap);
+    margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--border-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+    animation: orb-move 8s ease-in-out infinite;
+}
+
+@keyframes orb-move {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--text-primary) 0%, rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1.5px;
+}
+
+.author {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ====================================
+   NAVIGATION SYSTEM
+   ==================================== */
+
+.navbar {
+    margin: 3rem auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
+}
+
+/* Decorative line above nav */
+.navbar::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--accent) 25%,
+        var(--primary) 50%,
+        var(--secondary) 75%,
+        transparent 100%);
+    margin-bottom: 2.5rem;
+    border-radius: 1px;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+/* Navigation Grid */
+.nav-buttons {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Week Button Style - Modern Card */
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.15) 0%, 
+        rgba(118, 75, 162, 0.15) 100%);
+    color: var(--text-primary);
+    border: 2px solid var(--border-medium);
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 
+        0 10px 30px rgba(102, 126, 234, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    height: 110px;
+    min-height: 110px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+/* Gradient overlay on hover */
+.nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.25), 
+        transparent);
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Hover State */
+.nav-btn:hover {
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.3) 0%, 
+        rgba(118, 75, 162, 0.3) 100%);
+    color: var(--accent-light);
+    border-color: var(--accent);
+    transform: translateY(-10px) scale(1.06) rotateY(5deg);
+    box-shadow: 
+        0 20px 50px rgba(0, 212, 255, 0.3),
+        0 0 40px rgba(102, 126, 234, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn:hover::before {
+    left: 100%;
+}
+
+/* Active State */
+.nav-btn:active {
+    transform: translateY(-5px) scale(0.96);
+}
+
+/* Focus/Accessibility */
+.nav-btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* Decorative line below nav */
+.navbar::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--secondary) 25%,
+        var(--primary) 50%,
+        var(--accent) 75%,
+        transparent 100%);
+    margin-top: 2.5rem;
+    border-radius: 1px;
+    box-shadow: 0 0 20px rgba(118, 75, 162, 0.4);
+}
+
+/* ====================================
+   CONTENT SECTION
+   ==================================== */
+
+page {
+    display: block;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 24px;
+    padding: 4rem 3.5rem;
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--border-medium);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Top accent line */
+page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--accent), 
+        transparent);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+/* ====================================
+   TYPOGRAPHY
+   ==================================== */
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, 
+        var(--text-primary) 0%, 
+        var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-left: 1rem;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--accent), var(--primary));
+    border-radius: 2px;
+}
+
+p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+/* ====================================
+   COLUMN LAYOUT
+   ==================================== */
+
+.two-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.column {
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.08) 0%, 
+        rgba(102, 126, 234, 0.08) 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 2px solid var(--border-medium);
+    backdrop-filter: blur(12px);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Column accent line */
+.column::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--accent), 
+        var(--primary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.column:hover::before {
+    transform: scaleX(1);
+}
+
+.column:hover {
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.15) 0%, 
+        rgba(102, 126, 234, 0.15) 100%);
+    border-color: var(--border-strong);
+    transform: translateY(-8px);
+    box-shadow: 
+        0 20px 50px rgba(0, 212, 255, 0.25),
+        0 0 30px rgba(102, 126, 234, 0.2);
+}
+
+.column p {
+    margin-bottom: 0;
+    color: var(--text-secondary);
+}
+
+/* ====================================
+   SCROLLBAR STYLING
+   ==================================== */
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent), var(--primary));
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--accent-light), var(--primary-light));
+    background-clip: padding-box;
+}
+
+/* ====================================
+   RESPONSIVE DESIGN
+   ==================================== */
+
+@media (max-width: 1280px) {
+    .container {
+        max-width: 90vw;
+    }
+    
+    page {
+        padding: 3rem 2.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 2.2rem;
+        padding: 3rem 2rem;
+    }
+    
+    .nav-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 12px;
+        padding: 1.5rem 0;
+    }
+    
+    .nav-btn {
+        height: 100px;
+        min-height: 100px;
+        font-size: 0.75rem;
+        padding: 16px 12px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 92vw;
+        padding: 1rem 0;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+        padding: 2.5rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .navbar::before,
+    .navbar::after {
+        margin: 1.5rem 0;
+        height: 1px;
+    }
+    
+    .nav-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 10px;
+        padding: 1.5rem 0;
+    }
+    
+    .nav-btn {
+        height: 90px;
+        min-height: 90px;
+        font-size: 0.7rem;
+        padding: 14px 10px;
+        border-radius: 16px;
+    }
+    
+    .nav-btn:hover {
+        transform: translateY(-8px) scale(1.05);
+    }
+    
+    page {
+        padding: 2.5rem 2rem;
+        border-radius: 18px;
+    }
+    
+    .two-columns {
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .column {
+        padding: 2rem;
+        border-radius: 16px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem 0;
+    }
+    
+    .title {
+        font-size: 1.4rem;
+        padding: 2rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .author {
+        font-size: 0.75rem;
+        margin-top: 1rem;
+    }
+    
+    .navbar::before,
+    .navbar::after {
+        margin: 1rem 0;
+        height: 1px;
+    }
+    
+    .nav-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 8px;
+        padding: 1rem 0;
+    }
+    
+    .nav-btn {
+        height: 80px;
+        min-height: 80px;
+        font-size: 0.65rem;
+        padding: 12px 8px;
+        border-radius: 12px;
+    }
+    
+    .nav-btn:hover {
+        transform: translateY(-6px) scale(1.04);
+    }
+    
+    page {
+        padding: 2rem 1rem;
+        border-radius: 16px;
+    }
+    
+    .two-columns {
+        gap: 1.5rem;
+    }
+    
+    .column {
+        padding: 1.5rem;
+        border-radius: 14px;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+        padding-left: 0.8rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+}
